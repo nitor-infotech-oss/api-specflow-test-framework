@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -63,10 +64,10 @@ namespace ApiFramework
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
-                    { "grant_type", "client_credentials" },
-                    { "client_id", "dummy-client-id"},
-                    { "client_secret", "dummy-client-secret" },
-                    { "resource", "dumnmy-clinet-resource" }
+                    { "grant_type", ConfigurationManager.AppSettings["grant_type"]},
+                    { "client_id", ConfigurationManager.AppSettings["client_id"]},
+                    { "client_secret", ConfigurationManager.AppSettings["client_secret"]},
+                    { "resource", ConfigurationManager.AppSettings["resource"]}
                 })
             });
 
@@ -86,7 +87,7 @@ namespace ApiFramework
 
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
             client.Headers[HttpRequestHeader.Authorization] = string.Format("Bearer {0}", token);
-            client.Headers["upn"] = "abc@xyz.com";
+            client.Headers["upn"] = ConfigurationManager.AppSettings["upn"];
             return client;
         }
 

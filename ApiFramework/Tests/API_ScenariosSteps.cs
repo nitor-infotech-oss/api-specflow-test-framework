@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Text;
 using TechTalk.SpecFlow;
@@ -71,7 +72,7 @@ namespace ApiFramework.Tests
             string baseURL = "https://postman-echo.com/basic-auth";
             IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(inputParameters);
             string requestURL = jsonHelper.BuildRequestURL(baseURL, jsonInputCSharp);
-            string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("postman" + ":" + "password")); //username:password
+            string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["BasicAuthUsernanme"] + ":" + ConfigurationManager.AppSettings["BasicAuthPassword"])); //username:password
             client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
             string jsonResponse = clientHelper.GetJsonResponse(requestType, baseURL, requestURL, client, inputParameters);
             var jsonToCSharp = JsonConvert.DeserializeObject<JsonOutputForBasicAuthentication>(jsonResponse);
