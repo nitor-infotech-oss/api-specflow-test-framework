@@ -156,16 +156,28 @@
     <None Include="SpecRunTestProfile_2011_09.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TestData\JsonInputBasicAuth.json">
+    <None Include="TestData\QA\JsonInputBasicAuth.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\JsonInputForSimpleGET.json">
+    <None Include="TestData\QA\JsonInputForSimpleGET.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\JsonInputForSimplePOST.json">
+    <None Include="TestData\QA\JsonInputForSimplePOST.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\JsonInputForTokenGET.json">
+    <None Include="TestData\QA\JsonInputForTokenGET.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\UAT\JsonInputBasicAuth.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\UAT\JsonInputForSimpleGET.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\UAT\JsonInputForSimplePOST.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\UAT\JsonInputForTokenGET.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Tests\API_Scenarios.feature">

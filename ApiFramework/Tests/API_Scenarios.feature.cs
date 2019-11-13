@@ -73,7 +73,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table1.AddRow(new string[] {
-                        "TestData\\JsonInputForSimpleGET.json"});
+                        "TestData\\Environment\\JsonInputForSimpleGET.json"});
 #line 6
     testRunner.Given("I have a json input file", ((string)(null)), table1, "Given ");
 #line 9
@@ -92,7 +92,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table2.AddRow(new string[] {
-                        "TestData\\JsonInputForSimplePOST.json"});
+                        "TestData\\Environment\\JsonInputForSimplePOST.json"});
 #line 12
  testRunner.Given("I have a json input file", ((string)(null)), table2, "Given ");
 #line 15
@@ -111,7 +111,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table3.AddRow(new string[] {
-                        "TestData\\JsonInputForTokenGET.json"});
+                        "TestData\\Environment\\JsonInputForTokenGET.json"});
 #line 18
  testRunner.Given("I have a json input file", ((string)(null)), table3, "Given ");
 #line 21
@@ -130,7 +130,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table4.AddRow(new string[] {
-                        "TestData\\JsonInputBasicAuth.json"});
+                        "TestData\\Environment\\JsonInputBasicAuth.json"});
 #line 24
  testRunner.Given("I have a json input file", ((string)(null)), table4, "Given ");
 #line 27

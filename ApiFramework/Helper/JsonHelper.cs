@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 
 namespace ApiFramework
@@ -13,7 +14,7 @@ namespace ApiFramework
             assemblyPath = AppDomain.CurrentDomain.BaseDirectory;
             string UploadFileName = fileName;
 
-            var fullPathofFile = Path.Combine(assemblyPath, @"" + UploadFileName);
+            var fullPathofFile = Path.Combine(assemblyPath, @"" + UploadFileName).Replace("Environment", ConfigurationManager.AppSettings["Environment"]);
             string inputData = File.ReadAllText(fullPathofFile);
             return inputData;
         }
