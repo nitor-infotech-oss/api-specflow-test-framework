@@ -37,23 +37,8 @@ namespace ApiFramework
             }
             catch (WebException ex)
             {
-                switch (((HttpWebResponse)ex.Response).StatusCode)
-                {
-                    case HttpStatusCode.NotFound:
-                        response = "404 Not Found";
-                        break;
-
-                    case HttpStatusCode.Unauthorized:
-                        response = "401 Unauthorized";
-                        break;
-
-                    case HttpStatusCode.BadRequest:
-                        response = "400 Bad Request";
-                        break;
-
-                    default:
-                        throw ex;
-                }
+                HttpWebResponse responseEx = (HttpWebResponse)ex.Response;
+                response = (int)responseEx.StatusCode + " " + responseEx.StatusCode.ToString();
                 return response;
             }
         }
