@@ -3,28 +3,36 @@
 
 @mytag
 Scenario: Simple GET Request
+	Given I have a 'GET' API 'http://fakerestapi.azurewebsites.net/api/Activities'
     Given I have a json input file
 	| FileName |
 	| TestData\Environment\JsonInputForSimpleGET.json   |
-	Then I have a simple GET API response
+	Given Authentication Type 'No Authentication'
+	Then I receive API response
 
 Scenario: Simple POST Request
-	Given I have a json input file
+	Given I have a 'POST' API 'https://reqres.in/api/users'
+    Given I have a json input file
 	| FileName |
 	| TestData\Environment\JsonInputForSimplePOST.json   |
-	Then I get POST API response
+	Given Authentication Type 'No Authentication'
+	Then I receive API response
 
-Scenario: GET Request with token generation which expire after 24 hours
-	Given I have a json input file
+Scenario: GET Request for Token Authentication
+	Given I have a 'GET' API 'https://dummy-api-url-for-tokenBasedAuthentication'
+     Given I have a json input file
 	| FileName |
 	| TestData\Environment\JsonInputForTokenGET.json   |
-	Then I get response for API that require token
+	Given Authentication Type 'Bearer Authentication'
+	Then I receive API response
 
 Scenario: GET request with basic authentication username and password
+	Given I have a 'GET' API 'https://postman-echo.com/basic-auth'
 	Given I have a json input file
 	| FileName |
 	| TestData\Environment\JsonInputBasicAuth.json   |
-	Then I get API response for Basic Authorization 
+	Given Authentication Type 'Basic Authentication'
+	Then I receive API response
 
 
 

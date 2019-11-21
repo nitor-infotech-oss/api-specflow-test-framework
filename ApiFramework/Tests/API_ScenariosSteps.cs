@@ -15,68 +15,40 @@ namespace ApiFramework.Tests
         public string inputParameters;
         public JsonHelper jsonHelper = new JsonHelper();
         public WebClientHelper clientHelper = new WebClientHelper();
+        public string requestType;
+        public string baseUrl;
+        public string response;
+
+        [Given(@"I have a '(.*)' API '(.*)'")]
+        public void GivenIHaveAAPI(string httpVerb, string apiUrl)
+        {
+            requestType = httpVerb;
+            baseUrl = apiUrl;
+        }
 
         [Given(@"I have a json input file")]
         public void GivenIHaveAJsonInputFile(Table table)
         {
-            foreach (var row in table.Rows)
-            {
-                inputParameters = jsonHelper.ReadJsonFile(row["FileName"]);  // reading json file
-            }
+            inputParameters = jsonHelper.ReadJsonFile(table);  // Passing table
         }
 
-        [Then(@"I have a simple GET API response")]
-        public void GivenIHaveASimpleGETAPIResponse()
+        [Given(@"I have a json input file '(.*)'")]
+        public void GivenIHaveAJsonInputFile(string filePath)
         {
-            var requestType = "GET";
-            var client = new WebClient();
-            string baseURL = "http://fakerestapi.azurewebsites.net/api/Activities";
-            IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(inputParameters);
-            string requestURL = jsonHelper.BuildRequestURL(baseURL, jsonInputCSharp);
-            string jsonResponse = clientHelper.GetJsonResponse(requestType, baseURL, requestURL, client, inputParameters);
-            var jsonToCSharp = JsonConvert.DeserializeObject<JsonOutput>(jsonResponse); // converting Json response to CSharp 
-
+            inputParameters = jsonHelper.ReadJsonFile(filePath); // Passing sting (file Path) 
         }
 
-        [Then(@"I get POST API response")]
-        public void ThenIGetPOSTAPIResponse()
+        [Given(@"Authentication Type '(.*)'")]
+        public void GivenAuthenticationType(string authenticationType)
         {
-            var requestType = "POST";
-            var client = new WebClient();
-            string baseURL = "https://reqres.in/api/users";
-            IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(inputParameters);
-            string requestURL = jsonHelper.BuildRequestURL(baseURL, jsonInputCSharp);
-            string jsonResponse = clientHelper.GetJsonResponse(requestType, baseURL, requestURL, client, inputParameters);
-            var jsonToCSharp = JsonConvert.DeserializeObject<JsonOutputPostCall>(jsonResponse);
+            clientHelper.GetAuthorization(authenticationType); // call get Authorization method.
         }
 
-        [Then(@"I get response for API that require token")]
-        public void ThenIGetResponseForAPIThatRequireToken()
+        [Then(@"I receive API response")]
+        public void ThenIReceiveAPIResponse()
         {
-            var requestType = "GET";
-            var client = new WebClient();
-            string baseURL = "https://dummy-api-url-for-tokenBasedAuthentication";
-            string token = clientHelper.GenerateToken().Result; // generate token
-            client = clientHelper.InitialiseWebClientForTokenAuthentication(token);
-            IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(inputParameters);
-            string requestURL = jsonHelper.BuildRequestURL(baseURL, jsonInputCSharp);
-            string jsonResponse = clientHelper.GetJsonResponse(requestType, baseURL, requestURL, client, inputParameters);
-            var jsonToCSharp = JsonConvert.DeserializeObject<JsonOutput>(jsonResponse);
+            response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);
         }
 
-        [Then(@"I get API response for Basic Authorization")]
-        public void ThenIGetAPIResponseForBasicAuthorization()
-        {
-            var requestType = "GET";
-            var client = new WebClient();
-            string baseURL = "https://postman-echo.com/basic-auth";
-            IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(inputParameters);
-            string requestURL = jsonHelper.BuildRequestURL(baseURL, jsonInputCSharp);
-            string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["BasicAuthUsernanme"] + ":" + ConfigurationManager.AppSettings["BasicAuthPassword"])); //username:password
-            client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
-            string jsonResponse = clientHelper.GetJsonResponse(requestType, baseURL, requestURL, client, inputParameters);
-            var jsonToCSharp = JsonConvert.DeserializeObject<JsonOutputForBasicAuthentication>(jsonResponse);
-        }
-     
     }
 }

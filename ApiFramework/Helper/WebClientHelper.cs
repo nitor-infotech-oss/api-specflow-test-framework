@@ -13,22 +13,26 @@ namespace ApiFramework
 {
     public class WebClientHelper
     {
-        string response = null;
+        public string response = null;
+        WebClient client = new WebClient();
+        JsonHelper jsonHelper = new JsonHelper();
 
-        public string GetJsonResponse(string requestType, string baseURL, string requestURL, WebClient client,
-             string inputParameters)
+        public string GetResponse(string requestType, string requesrtUrl, string inpuParams)
         {
             try
             {
-                if(requestType == "GET")
+                if (requestType == "GET")
                 {
-                    response = client.DownloadString(requestURL);
+                    if (inpuParams != null)
+                    {
+                        requesrtUrl = jsonHelper.BuildRequestURL(requesrtUrl, inpuParams);
+                    }
+                    response = client.DownloadString(requesrtUrl);
                 }
                 else // for PUT, POST, DELETE
                 {
-                    response = client.UploadString(baseURL, inputParameters);
+                    response = client.UploadString(requesrtUrl, inpuParams);
                 }
-                Hooks.test.Pass("JSON response received successfully.");
                 return response;
             }
             catch (WebException ex)
@@ -50,7 +54,6 @@ namespace ApiFramework
                     default:
                         throw ex;
                 }
-                Hooks.test.Fail("Error in receiving JSON response. : " + response);
                 return response;
             }
         }
@@ -59,7 +62,7 @@ namespace ApiFramework
         {
             HttpClientHandler handler = new HttpClientHandler();
             HttpClient client = new HttpClient(handler);
-            string Uri = "https://dummy_app_URL/token";
+            string Uri = ConfigurationManager.AppSettings["Uri"];
             var token = await client.SendAsync(new HttpRequestMessage(HttpMethod.Post, Uri)
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
@@ -77,9 +80,8 @@ namespace ApiFramework
             return payload.Value<string>("access_token");
         }
 
-        public WebClient InitialiseWebClientForTokenAuthentication(string token)
+        public WebClient GetClientForTokenAuthentication(string token, WebClient client)
         {
-            var client = new WebClient();
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3
                          | System.Net.SecurityProtocolType.Tls
                          | System.Net.SecurityProtocolType.Tls11
@@ -91,6 +93,25 @@ namespace ApiFramework
             return client;
         }
 
+        public WebClient GetAuthorization(string authorizationType)
+        {
+            switch (authorizationType)
+            {
+                case "No Authentication":
+                    return client;
 
+                case "Basic Authentication":
+                    string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["BasicAuthUsernanme"] + ":" + ConfigurationManager.AppSettings["BasicAuthPassword"])); //username:password
+                    client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
+                    return client;
+
+                case "Bearer Authentication":
+                    string token = GenerateToken().Result;
+                    client = GetClientForTokenAuthentication(token, client);
+                    return client;
+
+                default: return client;
+            }
+        }
     }
 }
