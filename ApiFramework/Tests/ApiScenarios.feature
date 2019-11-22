@@ -1,5 +1,7 @@
-﻿Feature: API-Scenarios
-
+﻿Feature: ApiScenarios
+	In order to avoid silly mistakes
+	As a math idiot
+	I want to be told the sum of two numbers
 
 @mytag
 Scenario: Simple GET Request
@@ -33,11 +35,3 @@ Scenario: GET request with basic authentication username and password
 	| TestData\Environment\JsonInputBasicAuth.json   |
 	Given Authentication Type 'Basic Authentication'
 	Then I receive API response
-	Then I expect status code '400'
-	Then I verify json response body
-	| FileName |
-	| TestData\Environment\ExpectedJsonResponseForBasicAuth.json     |
-
-
-
-

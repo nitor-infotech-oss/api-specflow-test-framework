@@ -1,5 +1,7 @@
-﻿using ApiFramework.TestClass;
+﻿using ApiFramework.Helper;
+using ApiFramework.TestClass;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +17,7 @@ namespace ApiFramework.Tests
         public string inputParameters;
         public JsonHelper jsonHelper = new JsonHelper();
         public WebClientHelper clientHelper = new WebClientHelper();
+        public TestHelper testHelper = new TestHelper();
         public string requestType;
         public string baseUrl;
         public string response;
@@ -48,6 +51,24 @@ namespace ApiFramework.Tests
         public void ThenIReceiveAPIResponse()
         {
             response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);
+            string expectedRes = System.IO.File.ReadAllText(@"D:\12NovAPI_FW\api-specflow-test-framework\ApiFramework\TestData\QA\expectedRes.json");
+
+                     
+        }
+
+        [Then(@"I expect status code '(.*)'")]
+        public void ThenIExpectStatusCode(int expectedStatusCode)
+        {
+            if (testHelper.verifyApiResponseStatusCode("404", response) == false)
+                Assert.Fail("Response Status Code Mismatch.");
+        }
+
+        [Then(@"I verify json response body")]
+        public void ThenIVerifyJsonResponseBody(Table table)
+        {
+            string expectedResponse = jsonHelper.ReadJsonFile(table);
+            if (testHelper.verifyApiJsonResponse(expectedResponse, response) == false)
+                Assert.Fail("Json Response Mismatch.");
         }
 
     }

@@ -10,8 +10,8 @@
     <ProjectGuid>{D544E484-A413-42D0-89AE-2E6399B66BA0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApiFramework</RootNamespace>
-    <AssemblyName>ApiFramework</AssemblyName>
+    <RootNamespace>KungFu_ApiTestFramewrok</RootNamespace>
+    <AssemblyName>KungFu_ApiTestFramewrok</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -127,10 +127,14 @@
   <ItemGroup>
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Hooks.cs" />
-    <Compile Include="Helper\TestHelper.cs" />
     <Compile Include="TestClass\JsonOutput.cs" />
     <Compile Include="TestClass\JsonOutputForBasicAuthentication.cs" />
     <Compile Include="TestClass\JsonOutputPostCall.cs" />
+    <Compile Include="Tests\ApiScenarios.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApiScenarios.feature</DependentUpon>
+    </Compile>
     <Compile Include="Tests\API_Scenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,7 +161,6 @@
     <None Include="SpecRunTestProfile_2011_09.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TestData\QA\expectedRes.json" />
     <None Include="TestData\QA\JsonInputBasicAuth.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -181,6 +184,10 @@
     </None>
     <None Include="TestData\UAT\JsonInputForTokenGET.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tests\ApiScenarios.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApiScenarios.feature.cs</LastGenOutput>
     </None>
     <None Include="Tests\API_Scenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
