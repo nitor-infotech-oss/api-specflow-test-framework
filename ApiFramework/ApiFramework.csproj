@@ -157,7 +157,9 @@
     <None Include="SpecRunTestProfile_2011_09.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TestData\QA\expectedRes.json" />
+    <None Include="TestData\QA\ExpectedJsonResponseForBasicAuth.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\QA\JsonInputBasicAuth.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
