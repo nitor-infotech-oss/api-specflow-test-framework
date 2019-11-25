@@ -50,10 +50,7 @@ namespace ApiFramework.Tests
         [Then(@"I receive API response")]
         public void ThenIReceiveAPIResponse()
         {
-            response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);
-            string expectedRes = System.IO.File.ReadAllText(@"D:\12NovAPI_FW\api-specflow-test-framework\ApiFramework\TestData\QA\expectedRes.json");
-
-                     
+            response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);            
         }
 
         [Then(@"I expect status code '(.*)'")]
