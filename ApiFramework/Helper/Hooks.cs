@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace ApiFramework
             extent.AttachReporter(extentHtml);
             extentHtml.LoadConfig(projectPath + "extent-config.xml");
 
-            extent.AddSystemInfo("Environment", "QA" );
+            extent.AddSystemInfo("Environment", ConfigurationManager.AppSettings["Environment"]);
 
         }
 

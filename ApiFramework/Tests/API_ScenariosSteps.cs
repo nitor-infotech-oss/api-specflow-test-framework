@@ -57,7 +57,10 @@ namespace ApiFramework.Tests
         public void ThenIExpectStatusCode(int expectedStatusCode)
         {
             if (testHelper.verifyApiResponseStatusCode("404", response) == false)
-                Assert.Fail("Response Status Code Mismatch.");
+                Hooks.test.Fail("Response Status Code Mismatch."); // can use Assert.Fail("Response Status Code Mismatch");
+            else
+                Hooks.test.Pass("Response Statuc Code Matched Successfully.");
+
         }
 
         [Then(@"I verify json response body")]
@@ -65,7 +68,10 @@ namespace ApiFramework.Tests
         {
             string expectedResponse = jsonHelper.ReadJsonFile(table);
             if (testHelper.verifyApiJsonResponse(expectedResponse, response) == false)
-                Assert.Fail("Json Response Mismatch.");
+                Hooks.test.Fail("Json Response Mismatch."); // can use Assert.Fail("Json Response Mismatch.");
+            else
+                Hooks.test.Pass("Json Response Matched Successfully.");
+
         }
 
     }
