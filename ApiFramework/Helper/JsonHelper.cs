@@ -28,15 +28,14 @@ namespace ApiFramework
         }
 
         public string BuildRequestURL(string baseURL, string jsonInputParams)
-        {
-            IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(jsonInputParams);
-
-            if (jsonInputCSharp.Count == 0)
+        {          
+            if (jsonInputParams == null)
             {
                 return baseURL;
             }
             else
             {
+                IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(jsonInputParams);
                 List<string> stringValues = new List<string>();
                 foreach (var item in jsonInputCSharp)
                 {
