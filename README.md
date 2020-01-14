@@ -41,16 +41,17 @@ ExtentReports, Version: 3.1.3
 Code Optimization:
 One of the main goals of this framework is to reduce the number of lines of code require to write a test. This BuildRequestURL code shall help to build request URL for any API with input params.  
 
-        public string BuildRequestURL(string baseURL, IDictionary<string, string> jsonInputParams)
-        {
-            if (jsonInputParams.Count == 0)
+        public string BuildRequestURL(string baseURL, string jsonInputParams)
+        {          
+            if (jsonInputParams == null)
             {
                 return baseURL;
             }
             else
-            {               
+            {
+                IDictionary<string, string> jsonInputCSharp = JsonConvert.DeserializeObject<IDictionary<string, string>>(jsonInputParams);
                 List<string> stringValues = new List<string>();
-                foreach (var item in jsonInputParams)
+                foreach (var item in jsonInputCSharp)
                 {
                     if (!string.IsNullOrWhiteSpace(item.Value))
                     {
