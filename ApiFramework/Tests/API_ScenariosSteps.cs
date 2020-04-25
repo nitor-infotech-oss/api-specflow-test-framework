@@ -1,6 +1,7 @@
 ﻿using ApiFramework.Helper;
 using ApiFramework.TestClass;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,10 @@ namespace ApiFramework.Tests
         public string response;
 
         [Given(@"I have a '(.*)' API '(.*)'")]
-        public void GivenIHaveAAPI(string httpVerb, string apiUrl)
+        public void GivenIHaveAAPI(string httpVerb, string API)
         {
             requestType = httpVerb;
-            baseUrl = apiUrl;
+            baseUrl = jsonHelper.GetURLsByEnvironment(API);
         }
 
         [Given(@"I have a json input file")]
@@ -50,7 +51,7 @@ namespace ApiFramework.Tests
         [Then(@"I receive API response")]
         public void ThenIReceiveAPIResponse()
         {
-            response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);            
+            response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);
         }
 
         [Then(@"I expect status code '(.*)'")]

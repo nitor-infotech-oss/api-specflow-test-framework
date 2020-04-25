@@ -31,9 +31,10 @@ namespace ApiFramework
                 }
                 else // for PUT, POST, DELETE
                 {
-                    response = client.UploadString(requesrtUrl, inpuParams);
+                    response = client.UploadString(requesrtUrl, requestType, inpuParams);                   
                 }
                 return response;
+                
             }
             catch (WebException ex)
             {
@@ -88,6 +89,10 @@ namespace ApiFramework
                 case "Basic Authentication":
                     string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["BasicAuthUsernanme"] + ":" + ConfigurationManager.AppSettings["BasicAuthPassword"])); //username:password
                     client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
+                    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3
+                         | System.Net.SecurityProtocolType.Tls
+                         | System.Net.SecurityProtocolType.Tls11
+                         | System.Net.SecurityProtocolType.Tls12;
                     return client;
 
                 case "Bearer Authentication":

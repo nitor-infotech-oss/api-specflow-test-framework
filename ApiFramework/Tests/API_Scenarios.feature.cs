@@ -70,7 +70,7 @@ namespace ApiFramework.Tests
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 6
- testRunner.Given("I have a \'GET\' API \'http://fakerestapi.azurewebsites.net/api/Activities\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a \'GET\' API \'ActivitiesAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
@@ -93,7 +93,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I have a \'POST\' API \'https://reqres.in/api/users\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a \'POST\' API \'UsersAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
@@ -116,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line 22
- testRunner.Given("I have a \'GET\' API \'https://dummy-api-url-for-tokenBasedAuthentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a \'GET\' API \'TokenAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
@@ -139,27 +139,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
 this.ScenarioSetup(scenarioInfo);
 #line 30
- testRunner.Given("I have a \'GET\' API \'https://postman-echo.com/basic-auth\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "FileName"});
-            table4.AddRow(new string[] {
-                        "TestData\\Environment\\JsonInputBasicAuth.json"});
+ testRunner.Given("I have a \'GET\' API \'PostmanAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 31
- testRunner.Given("I have a json input file", ((string)(null)), table4, "Given ");
-#line 34
  testRunner.Given("Authentication Type \'Basic Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 35
+#line 32
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 36
- testRunner.Then("I expect status code \'400\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "FileName"});
-            table5.AddRow(new string[] {
-                        "TestData\\Environment\\ExpectedJsonResponseForBasicAuth.json"});
-#line 37
- testRunner.Then("I verify json response body", ((string)(null)), table5, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

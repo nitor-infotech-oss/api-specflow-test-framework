@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using ApiFramework.Config;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace ApiFramework
@@ -28,7 +30,7 @@ namespace ApiFramework
         }
 
         public string BuildRequestURL(string baseURL, string jsonInputParams)
-        {          
+        {
             if (jsonInputParams == null)
             {
                 return baseURL;
@@ -46,6 +48,28 @@ namespace ApiFramework
                 }
                 return string.Format("{0}?{1}", baseURL, string.Join("&", stringValues));
             }
+        }
+
+        public string GetURLsByEnvironment(string parameter)
+        {
+            string environment = ConfigurationManager.AppSettings["Environment"];
+            string environmentData = ReadJsonFile(@"Config\API_URL_Config.json");
+            var inputJsonObject = JsonConvert.DeserializeObject<API_URL_Config>(environmentData);
+
+            var envConfig = inputJsonObject.GetUrlsByEnvironment
+                .Where(x => x.environment == environment).Select(x => x.environmentData)
+                .ToList();
+            foreach (var config in envConfig)
+            {                
+                foreach (var item in config)
+                {
+                    if (item.key == parameter)
+                        parameter = item.value;
+                }
+                    
+            }
+            return parameter;
+
         }
     }
 }
