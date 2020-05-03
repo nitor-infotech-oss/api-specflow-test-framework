@@ -125,7 +125,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\API_URL_Config.cs" />
+    <Compile Include="APIs\SimpleGET\OutputClass.cs" />
+    <Compile Include="APIs\SimpleGET\ValidateTheResponse.cs" />
+    <Compile Include="Config\API_Data_Config.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Hooks.cs" />
     <Compile Include="Helper\TestHelper.cs" />
@@ -148,7 +150,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Config\API_URL_Config.json">
+    <None Include="Config\API_Data_Config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Default.srprofile">
@@ -176,6 +178,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\QA\JsonInputForTokenGET.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\UAT\ExpectedJsonResponseForBasicAuth.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\UAT\JsonInputBasicAuth.json">

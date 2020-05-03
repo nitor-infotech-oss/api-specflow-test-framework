@@ -87,7 +87,7 @@ namespace ApiFramework
                     return client;
 
                 case "Basic Authentication":
-                    string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings["BasicAuthUsernanme"] + ":" + ConfigurationManager.AppSettings["BasicAuthPassword"])); //username:password
+                    string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(jsonHelper.GetDataByEnvironment("Basic_Usernanme") + ":" + jsonHelper.GetDataByEnvironment("Basic_Password"))); //username:password
                     client.Headers[HttpRequestHeader.Authorization] = "Basic " + credentials;
                     System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3
                          | System.Net.SecurityProtocolType.Tls

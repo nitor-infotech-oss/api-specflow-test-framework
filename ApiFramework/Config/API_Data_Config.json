@@ -1,5 +1,5 @@
 ﻿{
-  "GetUrlsByEnvironment": [
+  "GetDataByEnvironment": [
     {
       "environment": "QA",
       "environmentData": [
@@ -21,11 +21,19 @@
         },
         {
           "key": "SQL_ConnectionString",
-          "value": "data source=DUMMY_SOURCE;initial catalog=DUMMY_SCHEMA;User Id=DUMMY_USER;Password=DUMMY_PWD;"
+          "value": "data source = NIT-LPT-R164\\SQLEXPRESS; database = DemoSchema; Integrated Security = True;"
         },
         {
-          "key": "YB_ConnectionString",
-          "value": "data source=DUMMY_SOURCE;initial catalog=DUMMY_SCHEMA;User Id=DUMMY_USER;Password=DUMMY_PWD;"
+          "key": "Basic_Usernanme",
+          "value": "postman"
+        },
+        {
+          "key": "Basic_Password",
+          "value": "password"
+        },
+        {
+          "key": "Profile_Table",
+          "value": "[dbo].[Profile]"
         }
       ]
     },
@@ -50,13 +58,20 @@
         },
         {
           "key": "SQL_ConnectionString",
-          "value": "data source=DUMMY_SOURCE;initial catalog=DUMMY_SCHEMA;User Id=DUMMY_USER;Password=DUMMY_PWD;"
+          "value": "data source = NIT-LPT-R164\\SQLEXPRESS; database = DemoSchema; Integrated Security = True;"
         },
         {
-          "key": "YB_ConnectionString",
-          "value": "data source=DUMMY_SOURCE;initial catalog=DUMMY_SCHEMA;User Id=DUMMY_USER;Password=DUMMY_PWD;"
+          "key": "Basic_Usernanme",
+          "value": "postman"
+        },
+        {
+          "key": "Basic_Password",
+          "value": "password"
+        },
+        {
+          "key": "Profile_Table",
+          "value": "[dbo].[Profile]"
         }
-
       ]
     }
   ]

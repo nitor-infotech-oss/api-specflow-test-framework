@@ -12,15 +12,15 @@ namespace ApiFramework.Config
         public string value { get; set; }
 
     }
-    public class GetUrlsByEnvironment
+    public class GetDataByEnvironment
     {
         public string environment { get; set; }
         public IList<EnvironmentData> environmentData { get; set; }
 
     }
-    public class API_URL_Config
+    public class API_Data_Config
     {
-        public IList<GetUrlsByEnvironment> GetUrlsByEnvironment { get; set; }
+        public IList<GetDataByEnvironment> GetDataByEnvironment { get; set; }
 
     }
 }

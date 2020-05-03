@@ -9,6 +9,7 @@ Scenario: Simple GET Request
 	| TestData\Environment\JsonInputForSimpleGET.json   |
 	Given Authentication Type 'No Authentication'
 	Then I receive API response
+	Then I validate the json response
 
 Scenario: Simple POST Request
 	Given I have a 'POST' API 'UsersAPI'
@@ -30,10 +31,8 @@ Scenario: GET request with basic authentication username and password
 	Given I have a 'GET' API 'PostmanAPI'
 	Given Authentication Type 'Basic Authentication'
 	Then I receive API response
-	#Then I expect status code '400'
-	#Then I verify json response body
-	#| FileName |
-	#| TestData\Environment\ExpectedJsonResponseForBasicAuth.json     |
+	
+
 
 
 

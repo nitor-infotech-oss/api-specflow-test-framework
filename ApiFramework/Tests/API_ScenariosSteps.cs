@@ -1,4 +1,5 @@
-﻿using ApiFramework.Helper;
+﻿using ApiFramework.APIs.BaiscAuthenticationAPI;
+using ApiFramework.Helper;
 using ApiFramework.TestClass;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,11 +15,12 @@ namespace ApiFramework.Tests
 {
     [Binding]
     class API_ScenariosSteps
-    {
-        public string inputParameters;
+    {      
         public JsonHelper jsonHelper = new JsonHelper();
         public WebClientHelper clientHelper = new WebClientHelper();
         public TestHelper testHelper = new TestHelper();
+        public ValidateTheResponse validation = new ValidateTheResponse();
+        public string inputParameters;
         public string requestType;
         public string baseUrl;
         public string response;
@@ -27,7 +29,7 @@ namespace ApiFramework.Tests
         public void GivenIHaveAAPI(string httpVerb, string API)
         {
             requestType = httpVerb;
-            baseUrl = jsonHelper.GetURLsByEnvironment(API);
+            baseUrl = jsonHelper.GetDataByEnvironment(API);
         }
 
         [Given(@"I have a json input file")]
@@ -64,16 +66,12 @@ namespace ApiFramework.Tests
 
         }
 
-        [Then(@"I verify json response body")]
-        public void ThenIVerifyJsonResponseBody(Table table)
+        [Then(@"I validate the json response")]
+        public void ThenIValidateTheJsonResponse()
         {
-            string expectedResponse = jsonHelper.ReadJsonFile(table);
-            if (testHelper.verifyApiJsonResponse(expectedResponse, response) == false)
-                Hooks.test.Fail("Json Response Mismatch."); // can use Assert.Fail("Json Response Mismatch.");
-            else
-                Hooks.test.Pass("Json Response Matched Successfully.");
-
+            validation.verifyJsonResponseWithDatabase(response);
         }
+
 
     }
 }

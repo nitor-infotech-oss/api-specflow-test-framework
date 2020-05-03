@@ -50,13 +50,13 @@ namespace ApiFramework
             }
         }
 
-        public string GetURLsByEnvironment(string parameter)
+        public string GetDataByEnvironment(string parameter)
         {
             string environment = ConfigurationManager.AppSettings["Environment"];
-            string environmentData = ReadJsonFile(@"Config\API_URL_Config.json");
-            var inputJsonObject = JsonConvert.DeserializeObject<API_URL_Config>(environmentData);
+            string environmentData = ReadJsonFile(@"Config\API_Data_Config.json");
+            var inputJsonObject = JsonConvert.DeserializeObject<API_Data_Config>(environmentData);
 
-            var envConfig = inputJsonObject.GetUrlsByEnvironment
+            var envConfig = inputJsonObject.GetDataByEnvironment
                 .Where(x => x.environment == environment).Select(x => x.environmentData)
                 .ToList();
             foreach (var config in envConfig)

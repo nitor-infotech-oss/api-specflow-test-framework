@@ -82,67 +82,69 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("Authentication Type \'No Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 11
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.Then("I validate the json response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Simple POST Request", SourceLine=12)]
+        [TechTalk.SpecRun.ScenarioAttribute("Simple POST Request", SourceLine=13)]
         public virtual void SimplePOSTRequest()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple POST Request", ((string[])(null)));
-#line 13
-this.ScenarioSetup(scenarioInfo);
 #line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
  testRunner.Given("I have a \'POST\' API \'UsersAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table2.AddRow(new string[] {
                         "TestData\\Environment\\JsonInputForSimplePOST.json"});
-#line 15
+#line 16
     testRunner.Given("I have a json input file", ((string)(null)), table2, "Given ");
-#line 18
- testRunner.Given("Authentication Type \'No Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
+ testRunner.Given("Authentication Type \'No Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 20
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("GET Request for Token Authentication", SourceLine=20)]
+        [TechTalk.SpecRun.ScenarioAttribute("GET Request for Token Authentication", SourceLine=21)]
         public virtual void GETRequestForTokenAuthentication()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GET Request for Token Authentication", ((string[])(null)));
-#line 21
-this.ScenarioSetup(scenarioInfo);
 #line 22
+this.ScenarioSetup(scenarioInfo);
+#line 23
  testRunner.Given("I have a \'GET\' API \'TokenAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table3.AddRow(new string[] {
                         "TestData\\Environment\\JsonInputForTokenGET.json"});
-#line 23
+#line 24
      testRunner.Given("I have a json input file", ((string)(null)), table3, "Given ");
-#line 26
- testRunner.Given("Authentication Type \'Bearer Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
+ testRunner.Given("Authentication Type \'Bearer Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("GET request with basic authentication username and password", SourceLine=28)]
+        [TechTalk.SpecRun.ScenarioAttribute("GET request with basic authentication username and password", SourceLine=29)]
         public virtual void GETRequestWithBasicAuthenticationUsernameAndPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GET request with basic authentication username and password", ((string[])(null)));
-#line 29
-this.ScenarioSetup(scenarioInfo);
 #line 30
- testRunner.Given("I have a \'GET\' API \'PostmanAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 31
- testRunner.Given("Authentication Type \'Basic Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a \'GET\' API \'PostmanAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 32
+ testRunner.Given("Authentication Type \'Basic Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 33
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

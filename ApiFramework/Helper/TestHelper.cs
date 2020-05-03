@@ -11,6 +11,7 @@ namespace ApiFramework.Helper
     public class TestHelper
     {
         public SqlConnection _sqlConnection = null;
+        JsonHelper jsonHelper = new JsonHelper();
 
         public bool verifyApiResponseStatusCode(string expectedCode, string jsonResonse)
         {
@@ -35,24 +36,19 @@ namespace ApiFramework.Helper
                 return false;
         }
 
-        public object getSqlQueryResult(string query, string connectionString)
+        public SqlDataReader getSqlQueryResult(string query)
         {
-            try
-            {
-                _sqlConnection.Close();
-                _sqlConnection.ConnectionString = ConfigurationManager.AppSettings["Sql_ConnectionString"];
-                _sqlConnection.Open();
-            }
-            catch (Exception e)
-            {
-                _sqlConnection.ConnectionString = ConfigurationManager.AppSettings["Sql_ConnectionString"];
-                _sqlConnection.Open();
-            }
-            var command = new SqlCommand(query, _sqlConnection);
+            string connetionString;
+            SqlConnection cnnection;
+            connetionString = jsonHelper.GetDataByEnvironment("SQL_ConnectionString");
+            cnnection = new SqlConnection(connetionString);
+            cnnection.Open();            
+
+            var command = new SqlCommand(query, cnnection);
             command.CommandTimeout = 60;
             var sqlReturn = command.ExecuteReader();
-            return sqlReturn;
 
+            return sqlReturn;
         }
 
 
