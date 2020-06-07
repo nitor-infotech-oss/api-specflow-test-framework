@@ -14,24 +14,26 @@ namespace ApiFramework
     public class WebClientHelper
     {
         public string response = null;
+        public string requestUrl = null;
         WebClient client = new WebClient();
         JsonHelper jsonHelper = new JsonHelper();
 
-        public string GetResponse(string requestType, string requesrtUrl, string inpuParams)
+        public string GetResponse(string requestType, string endpoint, string inpuParams)
         {
             try
             {
+                requestUrl = jsonHelper.GetDataByEnvironment("BaseUrl") + endpoint;
                 if (requestType == "GET") //For GET, DELETE
                 {
                     if (inpuParams != null)
                     {
-                        requesrtUrl = jsonHelper.BuildRequestURL(requesrtUrl, inpuParams);
+                        requestUrl = jsonHelper.BuildRequestURL(requestUrl, inpuParams);
                     }
-                    response = client.DownloadString(requesrtUrl);
+                    response = client.DownloadString(requestUrl);
                 }
                 else // for PUT, POST
                 {
-                    response = client.UploadString(requesrtUrl, requestType, inpuParams);                   
+                    response = client.UploadString(requestUrl, requestType, inpuParams);                   
                 }
                 return response;               
             }

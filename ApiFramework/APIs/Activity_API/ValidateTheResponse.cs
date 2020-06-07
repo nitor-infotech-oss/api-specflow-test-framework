@@ -18,30 +18,49 @@ namespace ApiFramework.APIs.BaiscAuthenticationAPI
 
         SqlDataReader sqlReturn;
 
-        public bool verifyJsonResponseWithDatabase(string jsonResponse)
+        public void verifyJsonResponseWithDatabase(string jsonResponse)
         {
             var jsonResponseClass = JsonConvert.DeserializeObject<OutputClass>(jsonResponse);
-            string dbTitle = null;
+            string email = null, first_name = null, last_name = null;
 
             string query = "select * from " + jsonHelper.GetDataByEnvironment("Profile_Table")
-                           +" where id = " + jsonResponseClass.ID;
+                           +" where id = " + jsonResponseClass.data.id;
 
             sqlReturn = testHelper.getSqlQueryResult(query);
             while (sqlReturn.Read())
             {
-                dbTitle = sqlReturn["Title"].ToString();
+                email = sqlReturn["email"].ToString();
+                first_name = sqlReturn["first_name"].ToString();
+                last_name = sqlReturn["last_name"].ToString();
             }
 
-            if(dbTitle != jsonResponseClass.Title)
-            {
-                Hooks.test.Fail("Title value mismatch with database.");
-                return false;
+            if(email != jsonResponseClass.data.email)
+            {               
+                Hooks.test.Fail("Email value mismatch with database.");
             }
             else
             {
                 Hooks.test.Pass("Title value match with database.");
-                return true;
             }
+
+            if (first_name != jsonResponseClass.data.first_name)
+            {
+                Hooks.test.Fail("first_name value mismatch with database.");
+            }
+            else
+            {
+                Hooks.test.Pass("first_name value match with database.");
+            }
+
+            if (last_name != jsonResponseClass.data.last_name)
+            {
+                Hooks.test.Fail("last_name value mismatch with database.");
+            }
+            else
+            {
+                Hooks.test.Pass("last_name value match with database.");
+            }
+
         }
     }
 }

@@ -29,11 +29,11 @@ namespace ApiFramework
             return inputData;
         }
 
-        public string BuildRequestURL(string baseURL, string jsonInputParams)
+        public string BuildRequestURL(string requestUrl, string jsonInputParams)
         {
             if (jsonInputParams == null)
             {
-                return baseURL;
+                return requestUrl;
             }
             else
             {
@@ -46,7 +46,7 @@ namespace ApiFramework
                         stringValues.Add(item.Key + "=" + item.Value);
                     }
                 }
-                return string.Format("{0}?{1}", baseURL, string.Join("&", stringValues));
+                return string.Format("{0}?{1}", requestUrl, string.Join("&", stringValues));
             }
         }
 

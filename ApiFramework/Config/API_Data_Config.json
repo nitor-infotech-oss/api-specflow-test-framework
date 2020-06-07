@@ -4,12 +4,16 @@
       "environment": "QA",
       "environmentData": [
         {
-          "key": "ActivitiesAPI",
-          "value": "http://fakerestapi.azurewebsites.net/api/Activities"
+          "key": "BaseUrl",
+          "value": "https://reqres.in/"
         },
         {
-          "key": "UsersAPI",
-          "value": "https://reqres.in/api/users"
+          "key": "SingleUserAPI",
+          "value": "api/users"
+        },
+        {
+          "key": "CreateUsersAPI",
+          "value": "api/users"
         },
         {
           "key": "PostmanAPI",
@@ -41,12 +45,16 @@
       "environment": "UAT",
       "environmentData": [
         {
-          "key": "ActivitiesAPI",
-          "value": "http://fakerestapi.azurewebsites.net/api/Activities/5"
+          "key": "BaseUrl",
+          "value": "https://reqres.in/"
         },
         {
-          "key": "UsersAPI",
-          "value": "https://reqres.in/api/users/1"
+          "key": "SingleUserAPI",
+          "value": "api/users"
+        },
+        {
+          "key": "CreateUsersAPI",
+          "value": "api/users/1"
         },
         {
           "key": "PostmanAPI",
