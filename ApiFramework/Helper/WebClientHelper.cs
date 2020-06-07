@@ -21,7 +21,7 @@ namespace ApiFramework
         {
             try
             {
-                if (requestType == "GET")
+                if (requestType == "GET") //For GET, DELETE
                 {
                     if (inpuParams != null)
                     {
@@ -29,12 +29,11 @@ namespace ApiFramework
                     }
                     response = client.DownloadString(requesrtUrl);
                 }
-                else // for PUT, POST, DELETE
+                else // for PUT, POST
                 {
                     response = client.UploadString(requesrtUrl, requestType, inpuParams);                   
                 }
-                return response;
-                
+                return response;               
             }
             catch (WebException ex)
             {
@@ -48,15 +47,15 @@ namespace ApiFramework
         {
             HttpClientHandler handler = new HttpClientHandler();
             HttpClient client = new HttpClient(handler);
-            string Uri = ConfigurationManager.AppSettings["Uri"];
+            string Uri = jsonHelper.GetDataByEnvironment("Uri"); 
             var token = await client.SendAsync(new HttpRequestMessage(HttpMethod.Post, Uri)
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
-                    { "grant_type", ConfigurationManager.AppSettings["grant_type"]},
-                    { "client_id", ConfigurationManager.AppSettings["client_id"]},
-                    { "client_secret", ConfigurationManager.AppSettings["client_secret"]},
-                    { "resource", ConfigurationManager.AppSettings["resource"]}
+                    { "grant_type", jsonHelper.GetDataByEnvironment("grant_type") },
+                    { "client_id", jsonHelper.GetDataByEnvironment("client_id") },
+                    { "client_secret", jsonHelper.GetDataByEnvironment("client_secret") },
+                    { "resource", jsonHelper.GetDataByEnvironment("resource") } 
                 })
             });
 

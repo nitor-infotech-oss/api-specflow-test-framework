@@ -21,7 +21,7 @@ namespace ApiFramework.APIs.BaiscAuthenticationAPI
         public bool verifyJsonResponseWithDatabase(string jsonResponse)
         {
             var jsonResponseClass = JsonConvert.DeserializeObject<OutputClass>(jsonResponse);
-            string dbActivity = null;
+            string dbTitle = null;
 
             string query = "select * from " + jsonHelper.GetDataByEnvironment("Profile_Table")
                            +" where id = " + jsonResponseClass.ID;
@@ -29,10 +29,10 @@ namespace ApiFramework.APIs.BaiscAuthenticationAPI
             sqlReturn = testHelper.getSqlQueryResult(query);
             while (sqlReturn.Read())
             {
-                dbActivity = sqlReturn["Activity"].ToString();
+                dbTitle = sqlReturn["Title"].ToString();
             }
 
-            if(dbActivity != jsonResponseClass.Title)
+            if(dbTitle != jsonResponseClass.Title)
             {
                 Hooks.test.Fail("Title value mismatch with database.");
                 return false;

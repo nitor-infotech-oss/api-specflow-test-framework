@@ -41,7 +41,7 @@ namespace ApiFramework.Tests
         [Given(@"I have a json input file '(.*)'")]
         public void GivenIHaveAJsonInputFile(string filePath)
         {
-            inputParameters = jsonHelper.ReadJsonFile(filePath); // Passing sting (file Path) 
+            inputParameters = jsonHelper.ReadJsonFile(filePath); 
         }
 
         [Given(@"Authentication Type '(.*)'")]

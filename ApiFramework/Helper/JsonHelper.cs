@@ -21,7 +21,7 @@ namespace ApiFramework
             return inputParameters;
         }
 
-        public string ReadJsonFile(string fileName)
+        public string ReadJsonFile(string fileName) // Passing string (file Path) 
         {
             string assemblyPath = AppDomain.CurrentDomain.BaseDirectory;
             var fullPathofFile = Path.Combine(assemblyPath, @"" + fileName).Replace("Environment", ConfigurationManager.AppSettings["Environment"]);
@@ -65,11 +65,9 @@ namespace ApiFramework
                 {
                     if (item.key == parameter)
                         parameter = item.value;
-                }
-                    
+                }                    
             }
             return parameter;
-
         }
     }
 }

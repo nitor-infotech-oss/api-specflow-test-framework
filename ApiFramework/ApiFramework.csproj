@@ -125,15 +125,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIs\SimpleGET\OutputClass.cs" />
-    <Compile Include="APIs\SimpleGET\ValidateTheResponse.cs" />
+    <Compile Include="APIs\Activity_API\OutputClass.cs" />
+    <Compile Include="APIs\Activity_API\ValidateTheResponse.cs" />
     <Compile Include="Config\API_Data_Config.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Hooks.cs" />
     <Compile Include="Helper\TestHelper.cs" />
-    <Compile Include="TestClass\JsonOutput.cs" />
-    <Compile Include="TestClass\JsonOutputForBasicAuthentication.cs" />
-    <Compile Include="TestClass\JsonOutputPostCall.cs" />
+    <Compile Include="APIs\Postman_API\JsonOutputForBasicAuthentication.cs" />
+    <Compile Include="APIs\User_API\JsonOutputPostCall.cs" />
     <Compile Include="Tests\API_Scenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
