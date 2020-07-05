@@ -73,15 +73,24 @@ This class is helpful for report generation. By simply calling below two methods
 
 
 Framework structure:
-1.	Tests Folder
+1.	Tests Folder:
+
 All the feature files and step definition files are kept under the Test folder. These tests are described here in a simple English language called as Gherkin language.
-2.	Test Class Folder
+
+2.	Test Class Folder:
+
 This folder contains the class file for the tests which helps us to convert JSON inputs or JSON response to .Net type.
-3.	Test Data Folder
+
+3.	Test Data Folder:
+
 This folder contains various combination of json inputs/params required to provide for an API. These files are in json format. You can provide positive as well as negative inputs to the API.
-4.	Reports Folder
+
+4.	Reports Folder:
+
 The test results are under this folder. This report is in html format.
-5.	 Helper Folder
+
+5.	 Helper Folder:
+
 The helper folder contains helper classes which intends to give quick implementation of basic methods that can be used again and again.
 
 Packages used: 
