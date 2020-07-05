@@ -32,7 +32,8 @@ Advantages:
 6.	Use of BDD framework allows every person like Testers, Developers, business analyst, etc., to participate actively.
 7.	Enhanced speed at which testing progresses.
 
-Reusable Components.
+Reusable Components:
+
 One of the main goals of this framework is to reduce the number of lines of code require to write a test. This can be achieved by using below methods as required.
 
 1)	GetResponse(string requestType, string endpoint, string inpuParams)
