@@ -61,16 +61,16 @@ The return type of this method is string.
 
 All the config data that is stored in json file are in key value pairs. This config file contains data like endpoints of API, connection string, table names, base url, credentials, etc. By passing the key to above method will return its value in string format.
 
-6)	Hooks.cs
+6)	getSqlQueryResult(string query)
+
+This method returns the SQL result by simply passing the query. The return type of this method is SqlDataReader.
+
+7)	Hooks.cs
 
 This class is helpful for report generation. By simply calling below two methods you can write test case pass or fail condition.
 1)	Hooks.test.Pass(“Your pass condition.”)
 2)	Hooks.test.Fail(“Your fail condition.”)
 
-
-7)	getSqlQueryResult(string query)
-
-This method returns the SQL result by simply passing the query. The return type of this method is SqlDataReader.
 
 Framework structure:
 1.	Tests Folder
