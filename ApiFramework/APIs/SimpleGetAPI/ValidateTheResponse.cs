@@ -1,4 +1,5 @@
 ﻿using ApiFramework.APIs.SimpleGET;
+using ApiFramework.APIs.SimpleGetAPI;
 using ApiFramework.Helper;
 using Newtonsoft.Json;
 using System;
@@ -18,15 +19,16 @@ namespace ApiFramework.APIs.BaiscAuthenticationAPI
 
         SqlDataReader sqlReturn;
 
-        public void verifyJsonResponseWithDatabase(string jsonResponse)
+        public void verifyJsonResponseWithDatabase(string jsonResponse, SimpleGetInputClass inputParameters)
         {
             var jsonResponseClass = JsonConvert.DeserializeObject<OutputClass>(jsonResponse);
             string email = null, first_name = null, last_name = null;
 
             string query = "select * from " + jsonHelper.GetDataByEnvironment("Profile_Table")
-                           +" where id = " + jsonResponseClass.data.id;
+                           +" where id = " + inputParameters.id;
 
             sqlReturn = testHelper.getSqlQueryResult(query);
+
             while (sqlReturn.Read())
             {
                 email = sqlReturn["email"].ToString();
@@ -34,8 +36,8 @@ namespace ApiFramework.APIs.BaiscAuthenticationAPI
                 last_name = sqlReturn["last_name"].ToString();
             }
 
-            if(email != jsonResponseClass.data.email)
-            {               
+            if (email != jsonResponseClass.data.email)
+            {
                 Hooks.test.Fail("Email value mismatch with database.");
             }
             else
