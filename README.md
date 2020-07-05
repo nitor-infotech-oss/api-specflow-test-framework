@@ -67,6 +67,7 @@ This class is helpful for report generation. By simply calling below two methods
 1)	Hooks.test.Pass(“Your pass condition.”)
 2)	Hooks.test.Fail(“Your fail condition.”)
 
+
 7)	getSqlQueryResult(string query)
 
 This method returns the SQL result by simply passing the query. The return type of this method is SqlDataReader.
