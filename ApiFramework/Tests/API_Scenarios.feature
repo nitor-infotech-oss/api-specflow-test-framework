@@ -3,7 +3,7 @@
 
 @mytag
 Scenario: Simple GET Request
-	Given I have a 'GET' API 'SingleUserAPI'
+	Given I have a 'GET' API 'SimpleGetAPI'
     Given I have a json input file
 	| FileName |
 	| TestData\Environment\JsonInputForSimpleGET.json   |
@@ -12,7 +12,7 @@ Scenario: Simple GET Request
 	Then I validate the json response
 
 Scenario: Simple POST Request
-	Given I have a 'POST' API 'CreateUsersAPI'
+	Given I have a 'POST' API 'SimplePostAPI'
     Given I have a json input file
 	| FileName |
 	| TestData\Environment\JsonInputForSimplePOST.json   |

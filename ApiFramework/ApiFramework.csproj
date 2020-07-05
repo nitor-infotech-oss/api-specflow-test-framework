@@ -165,12 +165,6 @@
     <None Include="SpecRunTestProfile_2011_09.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TestData\QA\ExpectedJsonResponseForBasicAuth.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\QA\JsonInputBasicAuth.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="TestData\QA\JsonInputForSimpleGET.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -178,12 +172,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\QA\JsonInputForTokenGET.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\UAT\ExpectedJsonResponseForBasicAuth.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\UAT\JsonInputBasicAuth.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\UAT\JsonInputForSimpleGET.json">
