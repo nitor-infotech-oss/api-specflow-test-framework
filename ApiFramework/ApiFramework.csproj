@@ -125,8 +125,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIs\Activity_API\OutputClass.cs" />
-    <Compile Include="APIs\Activity_API\ValidateTheResponse.cs" />
     <Compile Include="APIs\SimpleGetAPI\OutputClass.cs" />
     <Compile Include="APIs\SimpleGetAPI\SimpleGetInputClass.cs" />
     <Compile Include="APIs\SimpleGetAPI\ValidateTheResponse.cs" />
@@ -136,7 +134,6 @@
     <Compile Include="Helper\Hooks.cs" />
     <Compile Include="Helper\TestHelper.cs" />
     <Compile Include="APIs\Postman_API\JsonOutputForBasicAuthentication.cs" />
-    <Compile Include="APIs\User_API\JsonOutputPostCall.cs" />
     <Compile Include="Tests\API_Scenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

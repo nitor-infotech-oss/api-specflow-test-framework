@@ -1,4 +1,5 @@
 ﻿using ApiFramework.APIs.BaiscAuthenticationAPI;
+using ApiFramework.APIs.SimpleGetAPI;
 using ApiFramework.Helper;
 using ApiFramework.TestClass;
 using Newtonsoft.Json;
@@ -69,7 +70,8 @@ namespace ApiFramework.Tests
         [Then(@"I validate the json response")]
         public void ThenIValidateTheJsonResponse()
         {
-            validation.verifyJsonResponseWithDatabase(response);
+            var inputJson = JsonConvert.DeserializeObject<SimpleGetInputClass>(inputParameters);
+            validation.verifyJsonResponseWithDatabase(response, inputJson);
         }
 
 
