@@ -22,7 +22,10 @@ namespace ApiFramework
         {
             try
             {
-                requestUrl = jsonHelper.GetDataByEnvironment("BaseUrl") + endpoint;
+                string baseURL = jsonHelper.GetDataByEnvironment("BaseUrl");
+                if (baseURL == "BaseUrl")
+                    baseURL = null;
+                requestUrl = baseURL + endpoint;
                 if (requestType == "GET") //For GET, DELETE
                 {
                     if (inpuParams != null)
