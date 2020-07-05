@@ -127,6 +127,10 @@
   <ItemGroup>
     <Compile Include="APIs\Activity_API\OutputClass.cs" />
     <Compile Include="APIs\Activity_API\ValidateTheResponse.cs" />
+    <Compile Include="APIs\SimpleGetAPI\OutputClass.cs" />
+    <Compile Include="APIs\SimpleGetAPI\SimpleGetInputClass.cs" />
+    <Compile Include="APIs\SimpleGetAPI\ValidateTheResponse.cs" />
+    <Compile Include="APIs\SimplePostAPI\JsonOutputPostCall.cs" />
     <Compile Include="Config\API_Data_Config.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Hooks.cs" />

@@ -8,11 +8,11 @@
           "value": "https://reqres.in/"
         },
         {
-          "key": "SingleUserAPI",
+          "key": "SimpleGetAPI",
           "value": "api/users"
         },
         {
-          "key": "CreateUsersAPI",
+          "key": "SimplePostAPI",
           "value": "api/users"
         },
         {
@@ -46,19 +46,19 @@
       "environmentData": [
         {
           "key": "BaseUrl",
-          "value": "https://reqres.in/"
+          "value": "https://postman-echo.com/"
         },
         {
-          "key": "SingleUserAPI",
-          "value": "api/users"
+          "key": "SimpleGetAPI",
+          "value": "get"
         },
         {
-          "key": "CreateUsersAPI",
-          "value": "api/users/1"
+          "key": "SimplePostAPI",
+          "value": "post"
         },
         {
           "key": "PostmanAPI",
-          "value": "https://postman-echo.com/basic-auth"
+          "value": "basic-auth"
         },
         {
           "key": "TokenAPI",
@@ -79,7 +79,7 @@
         {
           "key": "Profile_Table",
           "value": "[dbo].[Profile]"
-        }
+        } //test
       ]
     }
   ]
