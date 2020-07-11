@@ -14,7 +14,7 @@ namespace ApiFramework.APIs.BaiscAuthenticationAPI
     public class ValidateTheResponse
     {
         TestHelper testHelper = new TestHelper();
-        public WebClientHelper clientHelper = new WebClientHelper();
+        public HttpClientHelper clientHelper = new HttpClientHelper();
         public JsonHelper jsonHelper = new JsonHelper();
 
         SqlDataReader sqlReturn;

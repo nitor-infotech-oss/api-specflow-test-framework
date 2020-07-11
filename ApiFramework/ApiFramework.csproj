@@ -141,7 +141,7 @@
     </Compile>
     <Compile Include="Tests\API_ScenariosSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helper\WebClientHelper.cs" />
+    <Compile Include="Helper\HttpClientHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="extent-config.xml" />

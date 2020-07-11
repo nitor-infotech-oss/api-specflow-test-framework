@@ -18,19 +18,22 @@ namespace ApiFramework.Tests
     class API_ScenariosSteps
     {      
         public JsonHelper jsonHelper = new JsonHelper();
-        public WebClientHelper clientHelper = new WebClientHelper();
+        public HttpClientHelper clientHelper = new HttpClientHelper();
         public TestHelper testHelper = new TestHelper();
         public ValidateTheResponse validation = new ValidateTheResponse();
         public string inputParameters;
         public string requestType;
-        public string baseUrl;
-        public string response;
+        public string endpoint;
+        public string jsonResponse;
+        public int statusCode;
+        public string statusMessage;
+        public int responseTime;
 
         [Given(@"I have a '(.*)' API '(.*)'")]
         public void GivenIHaveAAPI(string httpVerb, string API)
         {
             requestType = httpVerb;
-            baseUrl = jsonHelper.GetDataByEnvironment(API);
+            endpoint = jsonHelper.GetDataByEnvironment(API);
         }
 
         [Given(@"I have a json input file")]
@@ -54,24 +57,19 @@ namespace ApiFramework.Tests
         [Then(@"I receive API response")]
         public void ThenIReceiveAPIResponse()
         {
-            response = clientHelper.GetResponse(requestType, baseUrl, inputParameters);
-        }
-
-        [Then(@"I expect status code '(.*)'")]
-        public void ThenIExpectStatusCode(int expectedStatusCode)
-        {
-            if (testHelper.verifyApiResponseStatusCode("404", response) == false)
-                Hooks.test.Fail("Response Status Code Mismatch."); // can use Assert.Fail("Response Status Code Mismatch");
-            else
-                Hooks.test.Pass("Response Statuc Code Matched Successfully.");
-
+            var apiResponse = clientHelper.getApiReponse(endpoint, requestType,inputParameters);
+            jsonResponse = apiResponse.jsonResponse;
+            statusCode = apiResponse.statusCode;
+            statusMessage = apiResponse.statusMessage;
+            responseTime = apiResponse.responseTimeInMilliseconds;
+            Hooks.test.Pass("I receive response successfuly.");
         }
 
         [Then(@"I validate the json response")]
         public void ThenIValidateTheJsonResponse()
         {
             var inputJson = JsonConvert.DeserializeObject<SimpleGetInputClass>(inputParameters);
-            validation.verifyJsonResponseWithDatabase(response, inputJson);
+            validation.verifyJsonResponseWithDatabase(jsonResponse, inputJson);
         }
 
 

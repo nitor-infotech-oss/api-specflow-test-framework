@@ -16,8 +16,10 @@ namespace ApiFramework
         public static ExtentReports extent;
         public static ExtentTest test;
 
-        [BeforeFeature()]
-        public static void BasicSetUp()
+        //[BeforeFeature()] 
+        //[BeforeTestRun]
+        [BeforeScenario()]
+        public  void BasicSetUp()
         {
             string currentDate = DateTime.Now.ToString("dddd, dd MMMM yyyy ");
             string currentTime = DateTime.Now.ToShortTimeString().ToString().Replace(":", ".");
@@ -37,22 +39,26 @@ namespace ApiFramework
 
         }
 
+
         [BeforeScenario()]
-        public static void BeforeScenarioSetUp()
+        public  void BeforeScenarioSetUp()
         {
             // string testName = TestContext.CurrentContext.Test.Name;
             string testName = ScenarioContext.Current.ScenarioInfo.Title;
+          //  testName = FeatureContext.Current.FeatureInfo.Title;
             test = extent.CreateTest(testName);
         }
 
-        [AfterScenario()]
-        public static void AfterScnario()
-        {
+        //[AfterScenario()]
+        //public static void AfterScnario()
+        //{
             
-        }
+        //}
 
-        [AfterFeature()]
-        public static void EndReport()
+        //[AfterFeature()]
+        //[AfterTestRun]
+        [AfterScenario()]
+        public  void EndReport()
         {
             extent.Flush();
         }
