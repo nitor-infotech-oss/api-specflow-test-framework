@@ -39,16 +39,24 @@ namespace ApiFramework.Helper
         public SqlDataReader getSqlQueryResult(string query)
         {
             string connetionString;
-            SqlConnection cnnection;
+            SqlConnection connection;
             connetionString = jsonHelper.GetDataByEnvironment("SQL_ConnectionString");
-            cnnection = new SqlConnection(connetionString);
-            cnnection.Open();            
-
-            var command = new SqlCommand(query, cnnection);
-            command.CommandTimeout = 60;
+            connection = new SqlConnection(connetionString);
+            SqlCommand command;
+            try
+            {
+                connection.Close();
+            }
+            finally
+            {
+                connection.Open();
+                command = new SqlCommand(query, connection);
+                command.CommandTimeout = 60;
+                
+            }
             var sqlReturn = command.ExecuteReader();
-
             return sqlReturn;
+
         }
 
 
