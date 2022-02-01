@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,12 @@ namespace ApiFramework
     {
         public static ExtentReports extent;
         public static ExtentTest test;
+  
 
-        //[BeforeFeature()] 
+        [BeforeFeature()] 
         //[BeforeTestRun]
-        [BeforeScenario()]
-        public  void BasicSetUp()
+        //[BeforeScenario()]
+        public static void BasicSetUp()
         {
             string currentDate = DateTime.Now.ToString("dddd, dd MMMM yyyy ");
             string currentTime = DateTime.Now.ToShortTimeString().ToString().Replace(":", ".");
@@ -41,7 +43,7 @@ namespace ApiFramework
 
 
         [BeforeScenario()]
-        public  void BeforeScenarioSetUp()
+        public static void BeforeScenarioSetUp()
         {
             // string testName = TestContext.CurrentContext.Test.Name;
             string testName = ScenarioContext.Current.ScenarioInfo.Title;
@@ -55,12 +57,34 @@ namespace ApiFramework
             
         //}
 
-        //[AfterFeature()]
+        [AfterFeature()]
         //[AfterTestRun]
-        [AfterScenario()]
-        public  void EndReport()
-        {
+        //[AfterScenario()]
+        public static void EndReport()
+        {          
             extent.Flush();
+
+            string workingDirectory = Environment.CurrentDirectory;
+            System.IO.DirectoryInfo di = new DirectoryInfo(workingDirectory);
+
+            if (di.GetFiles().Count() > Convert.ToInt32(ConfigurationManager.AppSettings["FileCount"]))
+            {
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    try
+                    {
+                        file.Delete();
+                    }
+                    catch (Exception e)
+                    {
+                        //Existing log will not get deleted as its been used by other process. 
+                    }
+                }
+                //foreach (DirectoryInfo dir in di.GetDirectories()) // not needed as there will be no directory in this folder.
+                //{
+                //    dir.Delete(true);
+                //}
+            }
         }
 
 

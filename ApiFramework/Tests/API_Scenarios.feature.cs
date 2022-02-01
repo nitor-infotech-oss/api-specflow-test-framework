@@ -83,69 +83,85 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12
+ testRunner.Then("The Satus Code should be \'202\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+ testRunner.Then("The Response Time should be less than \'1000\' milliseconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.Then("The Response should contain text \'@reqres.in\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
  testRunner.Then("I validate the json response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Simple POST Request", SourceLine=13)]
+        [TechTalk.SpecRun.ScenarioAttribute("Simple POST Request", SourceLine=16)]
         public virtual void SimplePOSTRequest()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple POST Request", ((string[])(null)));
-#line 14
+#line 17
 this.ScenarioSetup(scenarioInfo);
-#line 15
+#line 18
  testRunner.Given("I have a \'POST\' API \'SimplePostAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table2.AddRow(new string[] {
                         "TestData\\Environment\\JsonInputForSimplePOST.json"});
-#line 16
-    testRunner.Given("I have a json input file", ((string)(null)), table2, "Given ");
 #line 19
+    testRunner.Given("I have a json input file", ((string)(null)), table2, "Given ");
+#line 22
  testRunner.Given("Authentication Type \'No Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 20
+#line 23
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.Then("The Satus Code should be \'201\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+ testRunner.Then("The Response Time should be less than \'1000\' milliseconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 26
+ testRunner.Then("The Response should contain text \'Created\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("GET Request for Token Authentication", SourceLine=21)]
+        [TechTalk.SpecRun.ScenarioAttribute("GET Request for Token Authentication", SourceLine=27)]
         public virtual void GETRequestForTokenAuthentication()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GET Request for Token Authentication", ((string[])(null)));
-#line 22
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 23
+#line 29
  testRunner.Given("I have a \'GET\' API \'TokenAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "FileName"});
             table3.AddRow(new string[] {
                         "TestData\\Environment\\JsonInputForTokenGET.json"});
-#line 24
+#line 30
      testRunner.Given("I have a json input file", ((string)(null)), table3, "Given ");
-#line 27
+#line 33
  testRunner.Given("Authentication Type \'Bearer Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 28
+#line 34
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("GET request with basic authentication username and password", SourceLine=29)]
+        [TechTalk.SpecRun.ScenarioAttribute("GET request with basic authentication username and password", SourceLine=35)]
         public virtual void GETRequestWithBasicAuthenticationUsernameAndPassword()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GET request with basic authentication username and password", ((string[])(null)));
-#line 30
+#line 36
 this.ScenarioSetup(scenarioInfo);
-#line 31
+#line 37
  testRunner.Given("I have a \'GET\' API \'PostmanAPI\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 38
  testRunner.Given("Authentication Type \'Basic Authentication\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 33
+#line 39
  testRunner.Then("I receive API response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
+ testRunner.Then("The Satus Code should be \'201\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
+ testRunner.Then("The Response Time should be less than \'1000\' milliseconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

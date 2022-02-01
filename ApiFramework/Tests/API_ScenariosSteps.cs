@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Net;
 using System.Text;
 using TechTalk.SpecFlow;
+using static ApiFramework.HttpClientHelper;
 
 namespace ApiFramework.Tests
 {
@@ -21,6 +22,7 @@ namespace ApiFramework.Tests
         public HttpClientHelper clientHelper = new HttpClientHelper();
         public TestHelper testHelper = new TestHelper();
         public ValidateTheResponse validation = new ValidateTheResponse();
+        public ApiResponse apiResponse = new ApiResponse();
         public string inputParameters;
         public string requestType;
         public string endpoint;
@@ -57,7 +59,7 @@ namespace ApiFramework.Tests
         [Then(@"I receive API response")]
         public void ThenIReceiveAPIResponse()
         {
-            var apiResponse = clientHelper.getApiReponse(endpoint, requestType,inputParameters);
+            apiResponse = clientHelper.getApiReponse(endpoint, requestType,inputParameters);
             jsonResponse = apiResponse.jsonResponse;
             statusCode = apiResponse.statusCode;
             statusMessage = apiResponse.statusMessage;
@@ -65,13 +67,39 @@ namespace ApiFramework.Tests
             Hooks.test.Pass("I receive response successfuly.");
         }
 
+        [Then(@"The Satus Code should be '(.*)'")]
+        public void ThenTheSatusCodeShouldBe(int StatusCode)
+        {
+            if (apiResponse.statusCode != StatusCode)
+                Hooks.test.Fail("Status Code mismtach. Expected Status Code is: " + StatusCode + " Received Status Code is: " + apiResponse.statusCode);
+            else
+                Hooks.test.Pass("Status Code: " + StatusCode + " matched successfully.");
+        }
+
+        [Then(@"The Response Time should be less than '(.*)' milliseconds")]
+        public void ThenTheResponseTimeShouldBeLessThanMiliSeconds(int ResponseTimeInMilliseconds)
+        {
+            if (apiResponse.responseTimeInMilliseconds > ResponseTimeInMilliseconds)
+                Hooks.test.Fail("Response Time mismtach. Expected Response within: " + ResponseTimeInMilliseconds + "  milliseconds.Received Response Time is: " + apiResponse.responseTimeInMilliseconds);
+            else
+                Hooks.test.Pass("Response Receieved within " + ResponseTimeInMilliseconds + " milliseconds. Response Time  is: " + apiResponse.responseTimeInMilliseconds + " milliseconds");
+        }
+
+        [Then(@"The Response should contain text '(.*)'")]
+        public void ThenTheResponseShouldContainText(string ExpetedText)
+        {
+            if (!apiResponse.jsonResponse.Contains(ExpetedText.ToLower()))
+                Hooks.test.Fail("API Response does not contains text: " + ExpetedText);
+            else
+                Hooks.test.Pass("API Response contains text: " + ExpetedText);
+        }
+
+
         [Then(@"I validate the json response")]
         public void ThenIValidateTheJsonResponse()
         {
             var inputJson = JsonConvert.DeserializeObject<SimpleGetInputClass>(inputParameters);
             validation.verifyJsonResponseWithDatabase(jsonResponse, inputJson);
         }
-
-
     }
 }

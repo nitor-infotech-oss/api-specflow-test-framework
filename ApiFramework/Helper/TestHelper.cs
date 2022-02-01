@@ -56,10 +56,6 @@ namespace ApiFramework.Helper
             }
             var sqlReturn = command.ExecuteReader();
             return sqlReturn;
-
         }
-
-
-
     }
 }
